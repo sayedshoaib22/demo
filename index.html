@@ -9,769 +9,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --primary-color: #4f46e5;
-      --secondary-color: #6366f1;
-      --accent-color: #0ea5e9;
-      --success-color: #22c55e;
-      --warning-color: #facc15;
-      --danger-color: #ef4444;
-      --dark-color: #1e293b;
-      --gray-100: #f8fafc;
-      --gray-200: #e2e8f0;
-      --gray-300: #cbd5e1;
-      --gray-600: #64748b;
-      --gray-700: #334155;
-      --white: #ffffff;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      line-height: 1.7;
-      color: var(--gray-700);
-      background-color: var(--white);
-      font-weight: 400;
-      overflow-x: hidden;
-    }
-
-    /* Enhanced Background with Organic Shapes */
-    .organic-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: -1;
-      overflow: hidden;
-    }
-
-    .organic-shape {
-      position: absolute;
-      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(139, 92, 246, 0.08));
-      animation: morph 15s ease-in-out infinite;
-    }
-
-    .organic-shape:nth-child(1) {
-      width: 500px;
-      height: 400px;
-      top: -200px;
-      right: -250px;
-      animation-delay: 0s;
-    }
-
-    .organic-shape:nth-child(2) {
-      width: 350px;
-      height: 300px;
-      bottom: -150px;
-      left: -175px;
-      animation-delay: 5s;
-      background: linear-gradient(135deg, rgba(34, 197, 94, 0.06), rgba(14, 165, 233, 0.06));
-    }
-
-    .organic-shape:nth-child(3) {
-      width: 250px;
-      height: 200px;
-      top: 40%;
-      right: -125px;
-      animation-delay: 10s;
-      background: linear-gradient(135deg, rgba(250, 204, 21, 0.06), rgba(239, 68, 68, 0.06));
-    }
-
-    @keyframes morph {
-      0%, 100% {
-        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-        transform: translate(0, 0) rotate(0deg);
-      }
-      25% {
-        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-        transform: translate(30px, -30px) rotate(90deg);
-      }
-      50% {
-        border-radius: 40% 60% 70% 30% / 50% 60% 30% 60%;
-        transform: translate(-20px, 20px) rotate(180deg);
-      }
-      75% {
-        border-radius: 70% 30% 40% 60% / 40% 70% 60% 30%;
-        transform: translate(20px, -20px) rotate(270deg);
-      }
-    }
-
-    /* Floating Particles */
-    .particles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .particle {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      background: var(--primary-color);
-      border-radius: 50%;
-      opacity: 0.6;
-      animation: float-particle 8s linear infinite;
-    }
-
-    @keyframes float-particle {
-      0% {
-        transform: translateY(100vh) rotate(0deg);
-        opacity: 0;
-      }
-      10% {
-        opacity: 0.6;
-      }
-      90% {
-        opacity: 0.6;
-      }
-      100% {
-        transform: translateY(-100px) rotate(360deg);
-        opacity: 0;
-      }
-    }
-
-    /* Navbar with Glassmorphism */
-    .navbar {
-      background: rgba(255, 255, 255, 0.85) !important;
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-      transition: all 0.3s ease;
-      padding: 1rem 0;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    }
-
-    .navbar-brand {
-      font-weight: 800;
-      font-size: 1.5rem;
-      color: var(--dark-color) !important;
-      display: flex;
-      align-items: center;
-      position: relative;
-    }
-
-    .navbar-brand i {
-      color: var(--primary-color);
-      margin-right: 0.5rem;
-      animation: pulse-icon 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse-icon {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-    }
-
-    .navbar-nav .nav-link {
-      color: var(--gray-600) !important;
-      font-weight: 500;
-      margin: 0 1rem;
-      padding: 0.5rem 0 !important;
-      position: relative;
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-
-    .navbar-nav .nav-link:hover {
-      color: var(--primary-color) !important;
-    }
-
-    .navbar-nav .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-      transition: all 0.3s ease;
-      transform: translateX(-50%);
-    }
-
-    .navbar-nav .nav-link:hover::after {
-      width: 100%;
-    }
-
-    /* Hero Section */
-    .hero-section {
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 8rem 0 4rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-title {
-      font-size: 4rem;
-      font-weight: 800;
-      margin-bottom: 1.5rem;
-      background: linear-gradient(135deg, var(--dark-color) 0%, var(--primary-color) 50%, var(--accent-color) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1.2;
-    }
-
-    .hero-subtitle {
-      font-size: 1.4rem;
-      margin-bottom: 2.5rem;
-      color: var(--gray-600);
-      font-weight: 400;
-      line-height: 1.6;
-    }
-
-    .hero-image-container {
-      position: relative;
-      border-radius: 24px;
-      overflow: hidden;
-      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
-      height: 400px;
-    }
-
-    .hero-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    .hero-image-container:hover .hero-image {
-      transform: scale(1.05);
-    }
-
-    /* Enhanced Buttons */
-    .btn-primary-custom {
-      background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-      color: white;
-      border: none;
-      padding: 1rem 2.5rem;
-      border-radius: 16px;
-      font-weight: 600;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: all 0.4s ease;
-      box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
-    }
-
-    .btn-primary-custom:hover {
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
-      color: white;
-    }
-
-    .btn-outline-custom {
-      color: var(--primary-color);
-      border: 2px solid var(--primary-color);
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(10px);
-      padding: 1rem 2.5rem;
-      border-radius: 16px;
-      font-weight: 600;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: all 0.4s ease;
-    }
-
-    .btn-outline-custom:hover {
-      background: var(--primary-color);
-      color: white;
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 15px 40px rgba(99, 102, 241, 0.3);
-    }
-
-    /* Enhanced Cards */
-    .card-modern {
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(20px);
-      border-radius: 24px;
-      padding: 2.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      transition: all 0.4s ease;
-      height: 100%;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
-    }
-
-    .card-modern:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
-    }
-
-    /* Stats Section */
-    .stats-section {
-      background: var(--gray-100);
-      padding: 6rem 0;
-    }
-
-    .stat-card {
-      text-align: center;
-      padding: 2.5rem 1.5rem;
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(20px);
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      transition: all 0.4s ease;
-    }
-
-    .stat-card:hover {
-      transform: translateY(-8px) scale(1.05);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-    }
-
-    .stat-number {
-      font-size: 3.5rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 0.5rem;
-    }
-
-    .stat-text {
-      color: var(--gray-600);
-      font-weight: 500;
-      font-size: 1rem;
-    }
-
-    /* Client Logos Section - Fixed */
-    .client-logos-section {
-      background: rgba(248, 250, 252, 0.8);
-      padding: 4rem 0;
-    }
-
-    .client-logo-card {
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(15px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 20px;
-      padding: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100px;
-      transition: all 0.3s ease;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
-    }
-
-    .client-logo-card:hover {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-      border-color: rgba(99, 102, 241, 0.3);
-    }
-
-    .client-logo-card img {
-      max-height: 50px;
-      max-width: 100%;
-      object-fit: contain;
-      transition: all 0.3s ease;
-    }
-
-    .client-logo-card:hover img {
-      transform: scale(1.1);
-    }
-
-    /* Logo placeholder for broken images */
-    .logo-placeholder {
-      width: 100px;
-      height: 50px;
-      background: linear-gradient(135deg, var(--gray-200), var(--gray-300));
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-      color: var(--gray-600);
-      font-size: 0.8rem;
-      text-align: center;
-    }
-
-    /* Service Cards */
-    .service-card {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(15px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 24px;
-      padding: 2.5rem;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
-      transition: all 0.4s ease;
-      height: 100%;
-    }
-
-    .service-card:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.1);
-    }
-
-    .service-icon {
-      width: 80px;
-      height: 80px;
-      border-radius: 20px;
-      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
-    }
-
-    .service-icon i {
-      color: #ffffff;
-      font-size: 2rem;
-    }
-
-    /* Modern Image Containers */
-    .modern-image {
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-    }
-
-    .modern-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    .modern-image:hover img {
-      transform: scale(1.05);
-    }
-
-    /* Product Cards */
-    .product-card {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 24px;
-      padding: 2.5rem;
-      transition: all 0.5s ease;
-      height: 100%;
-    }
-
-    .product-card:hover {
-      transform: translateY(-15px) scale(1.03);
-      box-shadow: 0 35px 80px rgba(0, 0, 0, 0.15);
-    }
-
-    /* Industry Showcase */
-    .industry-showcase {
-      position: relative;
-      border-radius: 20px;
-      overflow: hidden;
-      height: 300px;
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      box-shadow: 0 20px 60px rgba(79, 70, 229, 0.3);
-    }
-
-    .industry-showcase img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.8;
-      transition: all 0.5s ease;
-    }
-
-    .industry-showcase:hover img {
-      transform: scale(1.1);
-    }
-
-    .industry-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(135deg, rgba(79, 70, 229, 0.6), rgba(139, 92, 246, 0.6));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .industry-showcase:hover .industry-overlay {
-      opacity: 1;
-    }
-
-    .industry-content {
-      text-align: center;
-      color: white;
-      padding: 2rem;
-    }
-
-    .industry-content h4 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-
-    /* Section Titles */
-    .section-title {
-      font-size: 2.8rem;
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 1rem;
-      background: linear-gradient(135deg, var(--dark-color), var(--primary-color));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .section-subtitle {
-      text-align: center;
-      font-size: 1.2rem;
-      color: var(--gray-600);
-      margin-bottom: 4rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* Page Headers */
-    .page-header {
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%);
-      padding: 10rem 0 5rem;
-      text-align: center;
-      border-bottom: 1px solid var(--gray-200);
-    }
-
-    .page-header h1 {
-      font-size: 3.5rem;
-      font-weight: 700;
-      color: var(--dark-color);
-      margin-bottom: 1rem;
-      background: linear-gradient(135deg, var(--dark-color), var(--primary-color));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    /* Contact Form */
-    .contact-form {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);
-      border-radius: 24px;
-      padding: 3rem;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-    }
-
-    .form-control {
-      border: 2px solid var(--gray-200);
-      border-radius: 16px;
-      padding: 1rem 1.25rem;
-      transition: all 0.3s ease;
-      background: rgba(248, 250, 252, 0.8);
-      font-weight: 500;
-    }
-
-    .form-control:focus {
-      border-color: var(--primary-color);
-      box-shadow: 0 0 0 0.25rem rgba(99, 102, 241, 0.15);
-      background: white;
-      transform: translateY(-2px);
-    }
-
-    /* Footer */
-    .footer {
-      background: linear-gradient(135deg, var(--dark-color) 0%, #2d3748 100%);
-      color: var(--gray-300);
-      padding: 5rem 0 2rem;
-    }
-
-    .footer h5 {
-      color: var(--white);
-      margin-bottom: 1.5rem;
-      font-weight: 600;
-    }
-
-    .footer a {
-      color: var(--gray-300);
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    .footer a:hover {
-      color: var(--primary-color);
-    }
-
-    /* Page Content Management */
-    .page-content {
-      display: none;
-    }
-
-    .page-content.active {
-      display: block;
-    }
-
-    /* Badge Styles */
-    .badge-modern {
-      background: linear-gradient(135deg, var(--success-color), var(--accent-color));
-      color: white;
-      padding: 0.6rem 1.25rem;
-      border-radius: 25px;
-      font-weight: 500;
-      font-size: 0.875rem;
-      box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .hero-title {
-        font-size: 2.8rem;
-      }
-      .hero-subtitle {
-        font-size: 1.2rem;
-      }
-      .section-title {
-        font-size: 2.2rem;
-      }
-    }
-
-    /* Animation Classes */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .fade-in-up {
-      animation: fadeInUp 0.8s ease-out;
-    }
-
-    /* Contact Info Cards */
-    .contact-info .card-modern {
-      margin-bottom: 1.5rem;
-    }
-
-    /* Icon wrapper variations */
-    .icon-wrapper {
-      width: 70px;
-      height: 70px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1rem;
-      box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
-    }
-
-    .icon-wrapper i {
-      color: white;
-      font-size: 1.5rem;
-    }
-
-    /* Feature Grid */
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-
-    .feature-card {
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(15px);
-      border-radius: 20px;
-      padding: 2rem;
-      text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      transition: all 0.3s ease;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Breadcrumb */
-    .breadcrumb {
-      background: transparent;
-      margin: 0;
-      padding: 0;
-      justify-content: center;
-    }
-
-    .breadcrumb-item a {
-      color: var(--gray-600);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
-
-    .breadcrumb-item a:hover {
-      color: var(--primary-color);
-    }
-
-    .breadcrumb-item.active {
-      color: var(--primary-color);
-      font-weight: 600;
-    }
-
-    /* Loading Animation */
-    .spinner {
-      width: 20px;
-      height: 20px;
-      border: 2px solid transparent;
-      border-top: 2px solid currentColor;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    /* Social Links */
-    .social-links a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 50px;
-      height: 50px;
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      transition: all 0.4s ease;
-      margin-right: 1rem;
-    }
-
-    .social-links a:hover {
-      background: var(--primary-color);
-      border-color: var(--primary-color);
-      transform: translateY(-3px) scale(1.1);
-    }
-
-    .social-links a:hover i {
-      color: white !important;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -846,6 +84,7 @@
               </a>
             </div>
           </div>
+        
           <div class="col-lg-6">
             <div class="hero-image-container">
               <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" alt="Digital Innovation" class="hero-image">
@@ -887,12 +126,12 @@
       </div>
     </section>
 
-    <!-- Enhanced Client Logos Section - Fixed to handle missing images -->
+    <!-- Enhanced Client Logos Section -->
     <section class="client-logos-section">
       <div class="container">
         <div class="text-center mb-5">
           <h3 class="section-title" style="font-size: 2.2rem; margin-bottom: 0.5rem;">Trusted by Leading Telecom Operators</h3>
-          <p class="text-muted">Partnering with major carriers across Asia, Africa, Latin America & Europe</p>
+          <p class="section-description">Partnering with major carriers across Asia, Africa, Latin America & Europe</p>
         </div>
         <div class="row g-4">
           <div class="col-lg-2 col-md-3 col-6">
@@ -1019,17 +258,17 @@
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-6">
-            <h2 class="mb-4">Pioneer in Mobile Technology</h2>
-            <p class="lead text-muted">Bold Media Digital was established in 2016. Our management team includes specialists in Telco business who collectively have decades of experience in mobile industry.</p>
-            <p class="text-muted">We are constantly working towards accelerating the growth and usage of the internet across the globe. We work with the world's largest telecom organizations for supplying our in-house developed digital content.</p>
+            <h2 class="content-heading">Pioneer in Mobile Technology</h2>
+            <p class="content-text-primary">Bold Media Digital was established in 2016. Our management team includes specialists in Telco business who collectively have decades of experience in mobile industry.</p>
+            <p class="content-text-secondary">We are constantly working towards accelerating the growth and usage of the internet across the globe. We work with the world's largest telecom organizations for supplying our in-house developed digital content.</p>
             <div class="row mt-4">
               <div class="col-6">
                 <div class="card-modern text-center">
                   <div class="icon-wrapper mx-auto mb-3">
                     <i class="fas fa-globe"></i>
                   </div>
-                  <h3 class="text-primary mb-2">20+</h3>
-                  <p class="text-muted mb-0">Countries Presence</p>
+                  <h3 class="stat-number mb-2">20+</h3>
+                  <p class="card-text-muted mb-0">Countries Presence</p>
                 </div>
               </div>
               <div class="col-6">
@@ -1037,8 +276,8 @@
                   <div class="icon-wrapper mx-auto mb-3" style="background: linear-gradient(135deg, var(--success-color), var(--accent-color));">
                     <i class="fas fa-calendar"></i>
                   </div>
-                  <h3 class="text-primary mb-2">2016</h3>
-                  <p class="text-muted mb-0">Year Established</p>
+                  <h3 class="stat-number mb-2">2016</h3>
+                  <p class="card-text-muted mb-0">Year Established</p>
                 </div>
               </div>
             </div>
@@ -1066,8 +305,8 @@
               <div class="icon-wrapper mx-auto">
                 <i class="fas fa-bullseye"></i>
               </div>
-              <h5 class="mb-3">Razor-Sharp Advertising</h5>
-              <p class="text-muted">We focus on advertising that sticks with advanced algorithms to engage people who really matter.</p>
+              <h5 class="card-title">Razor-Sharp Advertising</h5>
+              <p class="card-text-secondary">We focus on advertising that sticks with advanced algorithms to engage people who really matter.</p>
             </div>
           </div>
           <div class="col-md-4">
@@ -1078,8 +317,8 @@
               <div class="icon-wrapper mx-auto" style="background: linear-gradient(135deg, var(--success-color), var(--accent-color));">
                 <i class="fas fa-chart-bar"></i>
               </div>
-              <h5 class="mb-3">Measurable Results</h5>
-              <p class="text-muted">Higher reach, better visibility and conversion, greater impact, and enhanced revenues.</p>
+              <h5 class="card-title">Measurable Results</h5>
+              <p class="card-text-secondary">Higher reach, better visibility and conversion, greater impact, and enhanced revenues.</p>
             </div>
           </div>
           <div class="col-md-4">
@@ -1090,8 +329,8 @@
               <div class="icon-wrapper mx-auto" style="background: linear-gradient(135deg, var(--warning-color), var(--danger-color));">
                 <i class="fas fa-handshake"></i>
               </div>
-              <h5 class="mb-3">Flexible Models</h5>
-              <p class="text-muted">CPI, CPL, CPA, CPS models that balance performance and customization.</p>
+              <h5 class="card-title">Flexible Models</h5>
+              <p class="card-text-secondary">CPI, CPL, CPA, CPS models that balance performance and customization.</p>
             </div>
           </div>
         </div>
@@ -1123,13 +362,13 @@
               <div class="service-icon">
                 <i class="fas fa-mobile-alt"></i>
               </div>
-              <h3>Telecom MVAS Content</h3>
-              <p>We offer digital content and robust technical platforms for Video, Gaming, SMS, USSD, IVR, OBD and Smart Messaging in mobile business.</p>
+              <h3 class="service-title">Telecom MVAS Content</h3>
+              <p class="service-description">We offer digital content and robust technical platforms for Video, Gaming, SMS, USSD, IVR, OBD and Smart Messaging in mobile business.</p>
               <ul class="list-unstyled mt-3">
-                <li><i class="fas fa-check text-success me-2"></i>24/7 Technical Support</li>
-                <li><i class="fas fa-check text-success me-2"></i>Revenue Sharing Model</li>
-                <li><i class="fas fa-check text-success me-2"></i>In-house Development</li>
-                <li><i class="fas fa-check text-success me-2"></i>Try and Buy Options</li>
+                <li><i class="fas fa-check text-success me-2"></i><span class="feature-text">24/7 Technical Support</span></li>
+                <li><i class="fas fa-check text-success me-2"></i><span class="feature-text">Revenue Sharing Model</span></li>
+                <li><i class="fas fa-check text-success me-2"></i><span class="feature-text">In-house Development</span></li>
+                <li><i class="fas fa-check text-success me-2"></i><span class="feature-text">Try and Buy Options</span></li>
               </ul>
             </div>
           </div>
@@ -1143,13 +382,13 @@
               <div class="service-icon" style="background: linear-gradient(135deg, var(--accent-color), var(--success-color));">
                 <i class="fas fa-server"></i>
               </div>
-              <h3>Technology Platform</h3>
-              <p>All CMS tech support to Mobile VAS companies offered on Capex & revenue sharing model. Tech support for new entities with marketing teams.</p>
+              <h3 class="service-title">Technology Platform</h3>
+              <p class="service-description">All CMS tech support to Mobile VAS companies offered on Capex & revenue sharing model. Tech support for new entities with marketing teams.</p>
               <ul class="list-unstyled mt-3">
-                <li><i class="fas fa-check text-success me-2"></i>CMS Solutions</li>
-                <li><i class="fas fa-check text-success me-2"></i>Platform Development</li>
-                <li><i class="fas fa-check text-success me-2"></i>Technical Integration</li>
-                <li><i class="fas fa-check text-success me-2"></i>Scalable Infrastructure</li>
+                <li><i class="fas fa-check text-success me-2"></i><span class="feature-text">CMS Solutions</span></li>
+                <li><i class="fas fa-check text-success me-2"></i><span class="feature-text">Platform Development</span></li>
+                <li><i class="fas fa-check text-success me-2"></i><span class="feature-text">Technical Integration</span></li>
+                <li><i class="fas fa-check text-success me-2"></i><span class="feature-text">Scalable Infrastructure</span></li>
               </ul>
             </div>
           </div>
@@ -1163,13 +402,13 @@
               <div class="service-icon" style="background: linear-gradient(135deg, var(--warning-color), var(--danger-color));">
                 <i class="fas fa-chart-line"></i>
               </div>
-              <h3>Digital Marketing</h3>
-              <p>Comprehensive digital marketing solutions including Website Design, SEO, PPC, CPA Advertising and Social Media Marketing.</p>
+              <h3 class="service-title">Digital Marketing</h3>
+              <p class="service-description">Comprehensive digital marketing solutions including Website Design, SEO, PPC, CPA Advertising and Social Media Marketing.</p>
               <ul class="list-unstyled mt-3">
-                <li><i class="fas fa-check text-success me-2"></i>Website Design & Development</li>
-                <li><i class="fas fa-check text-success me-2"></i>SEO Optimization</li>
-                <li><i class="fas fa-check text-success me-2"></i>PPC Campaigns</li>
-                <li><i class="fas fa-check text-success me-2"></i>Social Media Marketing</li>
+                <li><i class="fas fa-check text-success me-2"></i><span class="feature-text">Website Design & Development</span></li>
+                <li><i class="fas fa-check text-success me-2"></i><span class="feature-text">SEO Optimization</span></li>
+                <li><i class="fas fa-check text-success me-2"></i><span class="feature-text">PPC Campaigns</span></li>
+                <li><i class="fas fa-check text-success me-2"></i><span class="feature-text">Social Media Marketing</span></li>
               </ul>
             </div>
           </div>
@@ -1183,13 +422,13 @@
               <div class="service-icon" style="background: linear-gradient(135deg, var(--success-color), var(--primary-color));">
                 <i class="fas fa-headset"></i>
               </div>
-              <h3>BPO Services</h3>
-              <p>Back office services including data entry, cleansing, profiling, and capture services with focus on data quality and security.</p>
+              <h3 class="service-title">BPO Services</h3>
+              <p class="service-description">Back office services including data entry, cleansing, profiling, and capture services with focus on data quality and security.</p>
               <ul class="list-unstyled mt-3">
-                <li><i class="fas fa-check text-success me-2"></i>Data Entry & Processing</li>
-                <li><i class="fas fa-check text-success me-2"></i>Data Cleansing & Profiling</li>
-                <li><i class="fas fa-check text-success me-2"></i>Information Governance</li>
-                <li><i class="fas fa-check text-success me-2"></i>Document Security</li>
+                <li><i class="fas fa-check text-success me-2"></i><span class="feature-text">Data Entry & Processing</span></li>
+                <li><i class="fas fa-check text-success me-2"></i><span class="feature-text">Data Cleansing & Profiling</span></li>
+                <li><i class="fas fa-check text-success me-2"></i><span class="feature-text">Information Governance</span></li>
+                <li><i class="fas fa-check text-success me-2"></i><span class="feature-text">Document Security</span></li>
               </ul>
             </div>
           </div>
@@ -1211,8 +450,8 @@
               <div style="width: 80px; height: 80px; margin: 0 auto 1rem; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 15px 40px rgba(79, 70, 229, 0.3);">
                 <span style="color: white; font-size: 1.8rem; font-weight: 700;">1</span>
               </div>
-              <h5 class="mb-3">Discovery</h5>
-              <p class="text-muted">Understanding your business goals and requirements</p>
+              <h5 class="process-title">Discovery</h5>
+              <p class="process-description">Understanding your business goals and requirements</p>
             </div>
           </div>
           <div class="col-md-3">
@@ -1223,8 +462,8 @@
               <div style="width: 80px; height: 80px; margin: 0 auto 1rem; background: linear-gradient(135deg, var(--accent-color), var(--success-color)); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 15px 40px rgba(14, 165, 233, 0.3);">
                 <span style="color: white; font-size: 1.8rem; font-weight: 700;">2</span>
               </div>
-              <h5 class="mb-3">Strategy</h5>
-              <p class="text-muted">Developing customized solutions and implementation plans</p>
+              <h5 class="process-title">Strategy</h5>
+              <p class="process-description">Developing customized solutions and implementation plans</p>
             </div>
           </div>
           <div class="col-md-3">
@@ -1235,8 +474,8 @@
               <div style="width: 80px; height: 80px; margin: 0 auto 1rem; background: linear-gradient(135deg, var(--warning-color), var(--danger-color)); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 15px 40px rgba(250, 204, 21, 0.3);">
                 <span style="color: white; font-size: 1.8rem; font-weight: 700;">3</span>
               </div>
-              <h5 class="mb-3">Implementation</h5>
-              <p class="text-muted">Executing with precision and continuous monitoring</p>
+              <h5 class="process-title">Implementation</h5>
+              <p class="process-description">Executing with precision and continuous monitoring</p>
             </div>
           </div>
           <div class="col-md-3">
@@ -1247,8 +486,8 @@
               <div style="width: 80px; height: 80px; margin: 0 auto 1rem; background: linear-gradient(135deg, var(--success-color), var(--primary-color)); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 15px 40px rgba(34, 197, 94, 0.3);">
                 <span style="color: white; font-size: 1.8rem; font-weight: 700;">4</span>
               </div>
-              <h5 class="mb-3">Optimization</h5>
-              <p class="text-muted">Continuous improvement and performance optimization</p>
+              <h5 class="process-title">Optimization</h5>
+              <p class="process-description">Continuous improvement and performance optimization</p>
             </div>
           </div>
         </div>
@@ -1280,8 +519,8 @@
               <div style="width: 100px; height: 100px; margin: 0 auto 2rem; background: linear-gradient(135deg, var(--success-color), var(--accent-color)); border-radius: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 20px 60px rgba(34, 197, 94, 0.3);">
                 <i class="fas fa-heart" style="font-size: 2.5rem; color: white;"></i>
               </div>
-              <h4 class="mb-3">Fitofyy</h4>
-              <p class="text-muted mb-4">Yoga video portal with the right art of living. Learn patience, forgiveness, and gentleness through yoga practices. Stay connected from home with ever-expanding yoga videos.</p>
+              <h4 class="product-title">Fitofyy</h4>
+              <p class="product-description">Yoga video portal with the right art of living. Learn patience, forgiveness, and gentleness through yoga practices. Stay connected from home with ever-expanding yoga videos.</p>
               <span class="badge-modern">Health & Wellness</span>
             </div>
           </div>
@@ -1295,8 +534,8 @@
               <div style="width: 100px; height: 100px; margin: 0 auto 2rem; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 20px 60px rgba(79, 70, 229, 0.3);">
                 <i class="fas fa-gamepad" style="font-size: 2.5rem; color: white;"></i>
               </div>
-              <h4 class="mb-3">Gameofyy</h4>
-              <p class="text-muted mb-4">Access to 1000+ games for all ages. Puzzle, Running, Adventure, and chatting games. Entertainment & brain-storming activities with offline play options.</p>
+              <h4 class="product-title">Gameofyy</h4>
+              <p class="product-description">Access to 1000+ games for all ages. Puzzle, Running, Adventure, and chatting games. Entertainment & brain-storming activities with offline play options.</p>
               <span class="badge-modern" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));">Gaming</span>
             </div>
           </div>
@@ -1310,8 +549,8 @@
               <div style="width: 100px; height: 100px; margin: 0 auto 2rem; background: linear-gradient(135deg, var(--warning-color), var(--danger-color)); border-radius: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 20px 60px rgba(250, 204, 21, 0.3);">
                 <i class="fas fa-child" style="font-size: 2.5rem; color: white;"></i>
               </div>
-              <h4 class="mb-3">Kidszonepro</h4>
-              <p class="text-muted mb-4">Dedicated to all kids with videos including rhymes, poems, stories. Safe videos and adventures for childhood learning available everywhere.</p>
+              <h4 class="product-title">Kidszonepro</h4>
+              <p class="product-description">Dedicated to all kids with videos including rhymes, poems, stories. Safe videos and adventures for childhood learning available everywhere.</p>
               <span class="badge-modern" style="background: linear-gradient(135deg, var(--warning-color), var(--danger-color));">Kids Education</span>
             </div>
           </div>
@@ -1325,8 +564,8 @@
               <div style="width: 100px; height: 100px; margin: 0 auto 2rem; background: linear-gradient(135deg, var(--accent-color), var(--secondary-color)); border-radius: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 20px 60px rgba(14, 165, 233, 0.3);">
                 <i class="fas fa-trophy" style="font-size: 2.5rem; color: white;"></i>
               </div>
-              <h4 class="mb-3">Fantasy Sports & Esports</h4>
-              <p class="text-muted mb-4">Strategy-based online sports including Cricket, Poker, Soccer & Roulette. Create virtual teams of real players in live matches worldwide with comprehensive sports coverage.</p>
+              <h4 class="product-title">Fantasy Sports & Esports</h4>
+              <p class="product-description">Strategy-based online sports including Cricket, Poker, Soccer & Roulette. Create virtual teams of real players in live matches worldwide with comprehensive sports coverage.</p>
               <div class="d-flex gap-2 justify-content-center">
                 <span class="badge-modern" style="background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));">Sports</span>
                 <span class="badge-modern" style="background: linear-gradient(135deg, var(--dark-color), var(--gray-700));">Esports</span>
@@ -1350,8 +589,8 @@
             <div style="width: 70px; height: 70px; margin: 0 auto 1rem; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 15px 40px rgba(79, 70, 229, 0.3);">
               <i class="fas fa-download" style="color: white; font-size: 1.5rem;"></i>
             </div>
-            <h5 class="mb-3">Offline Access</h5>
-            <p class="text-muted">Download content for offline usage</p>
+            <h5 class="feature-title">Offline Access</h5>
+            <p class="feature-description">Download content for offline usage</p>
           </div>
           <div class="feature-card">
             <div class="modern-image mb-3" style="height: 120px;">
@@ -1360,8 +599,8 @@
             <div style="width: 70px; height: 70px; margin: 0 auto 1rem; background: linear-gradient(135deg, var(--success-color), var(--accent-color)); border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 15px 40px rgba(34, 197, 94, 0.3);">
               <i class="fas fa-shield-alt" style="color: white; font-size: 1.5rem;"></i>
             </div>
-            <h5 class="mb-3">Safe Content</h5>
-            <p class="text-muted">Family-friendly and secure content</p>
+            <h5 class="feature-title">Safe Content</h5>
+            <p class="feature-description">Family-friendly and secure content</p>
           </div>
           <div class="feature-card">
             <div class="modern-image mb-3" style="height: 120px;">
@@ -1370,8 +609,8 @@
             <div style="width: 70px; height: 70px; margin: 0 auto 1rem; background: linear-gradient(135deg, var(--accent-color), var(--secondary-color)); border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 15px 40px rgba(14, 165, 233, 0.3);">
               <i class="fas fa-globe" style="color: white; font-size: 1.5rem;"></i>
             </div>
-            <h5 class="mb-3">Global Reach</h5>
-            <p class="text-muted">Available in 20+ countries worldwide</p>
+            <h5 class="feature-title">Global Reach</h5>
+            <p class="feature-description">Available in 20+ countries worldwide</p>
           </div>
           <div class="feature-card">
             <div class="modern-image mb-3" style="height: 120px;">
@@ -1380,8 +619,8 @@
             <div style="width: 70px; height: 70px; margin: 0 auto 1rem; background: linear-gradient(135deg, var(--warning-color), var(--danger-color)); border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 15px 40px rgba(250, 204, 21, 0.3);">
               <i class="fas fa-mobile-alt" style="color: white; font-size: 1.5rem;"></i>
             </div>
-            <h5 class="mb-3">Mobile Optimized</h5>
-            <p class="text-muted">Optimized for mobile devices</p>
+            <h5 class="feature-title">Mobile Optimized</h5>
+            <p class="feature-description">Optimized for mobile devices</p>
           </div>
         </div>
       </div>
@@ -1409,7 +648,7 @@
                 <div style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-right: 1rem; box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);">
                   <i class="fas fa-envelope" style="color: white; font-size: 1.8rem;"></i>
                 </div>
-                <h3 class="mb-0">Get In Touch</h3>
+                <h3 class="contact-form-title">Get In Touch</h3>
               </div>
               <form id="contactForm">
                 <div class="row">
@@ -1455,7 +694,7 @@
           </div>
           <div class="col-lg-4">
             <div class="contact-info">
-              <h4 class="mb-4">Contact Information</h4>
+              <h4 class="contact-info-title">Contact Information</h4>
 
               <div class="modern-image mb-4" style="height: 200px;">
                 <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Contact Us">
@@ -1467,8 +706,8 @@
                     <i class="fas fa-envelope" style="color: white;"></i>
                   </div>
                   <div>
-                    <h6 class="mb-2">Email</h6>
-                    <p class="text-muted mb-0">support@boldmediadigital.com</p>
+                    <h6 class="contact-label">Email</h6>
+                    <p class="contact-value">support@boldmediadigital.com</p>
                   </div>
                 </div>
               </div>
@@ -1479,8 +718,8 @@
                     <i class="fas fa-globe" style="color: white;"></i>
                   </div>
                   <div>
-                    <h6 class="mb-2">Global Presence</h6>
-                    <p class="text-muted mb-0">20+ Countries across Asia, Africa, Latin America & Europe</p>
+                    <h6 class="contact-label">Global Presence</h6>
+                    <p class="contact-value">20+ Countries across Asia, Africa, Latin America & Europe</p>
                   </div>
                 </div>
               </div>
@@ -1491,8 +730,8 @@
                     <i class="fas fa-users" style="color: white;"></i>
                   </div>
                   <div>
-                    <h6 class="mb-2">User Base</h6>
-                    <p class="text-muted mb-0">10+ Million users monthly</p>
+                    <h6 class="contact-label">User Base</h6>
+                    <p class="contact-value">10+ Million users monthly</p>
                   </div>
                 </div>
               </div>
@@ -1503,8 +742,8 @@
                     <i class="fas fa-handshake" style="color: white;"></i>
                   </div>
                   <div>
-                    <h6 class="mb-2">Partnerships</h6>
-                    <p class="text-muted mb-0">20+ Mobile Carriers worldwide</p>
+                    <h6 class="contact-label">Partnerships</h6>
+                    <p class="contact-value">20+ Mobile Carriers worldwide</p>
                   </div>
                 </div>
               </div>
@@ -1527,8 +766,8 @@
             <div style="width: 120px; height: 120px; margin: 0 auto 2rem; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 20px 60px rgba(79, 70, 229, 0.4);">
               <i class="fas fa-rocket" style="color: white; font-size: 3rem;"></i>
             </div>
-            <h2 class="mb-3">Ready to Get Started?</h2>
-            <p class="lead mb-4 text-muted">Let's start with a conversation to understand your goals and challenges</p>
+            <h2 class="cta-title">Ready to Get Started?</h2>
+            <p class="cta-description">Let's start with a conversation to understand your goals and challenges</p>
             <a href="mailto:support@boldmediadigital.com" class="btn-primary-custom btn-lg">
               <i class="fas fa-envelope"></i>
               Start Conversation
@@ -1548,9 +787,9 @@
             <div style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-right: 1rem; box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);">
               <i class="fas fa-bolt" style="color: white; font-size: 1.8rem;"></i>
             </div>
-            <h5 class="mb-0" style="color: white;">Bold Media Digital</h5>
+            <h5 class="footer-brand">Bold Media Digital</h5>
           </div>
-          <p class="text-muted mb-4">Pioneer and innovator in Mobile Technology, delivering creative & innovative digital solutions for consumers & enterprises globally.</p>
+          <p class="footer-description">Pioneer and innovator in Mobile Technology, delivering creative & innovative digital solutions for consumers & enterprises globally.</p>
           <div class="social-links">
             <a href="#"><i class="fab fa-facebook text-primary"></i></a>
             <a href="#"><i class="fab fa-twitter text-primary"></i></a>
@@ -1559,7 +798,7 @@
           </div>
         </div>
         <div class="col-lg-2 col-md-6">
-          <h5 class="mb-4">Services</h5>
+          <h5 class="footer-heading">Services</h5>
           <ul class="list-unstyled">
             <li class="mb-2"><a href="#" onclick="showPage('services')">Telecom MVAS</a></li>
             <li class="mb-2"><a href="#" onclick="showPage('services')">Technology Platform</a></li>
@@ -1568,7 +807,7 @@
           </ul>
         </div>
         <div class="col-lg-2 col-md-6">
-          <h5 class="mb-4">Products</h5>
+          <h5 class="footer-heading">Products</h5>
           <ul class="list-unstyled">
             <li class="mb-2"><a href="#" onclick="showPage('products')">Fitofyy</a></li>
             <li class="mb-2"><a href="#" onclick="showPage('products')">Gameofyy</a></li>
@@ -1577,7 +816,7 @@
           </ul>
         </div>
         <div class="col-lg-2 col-md-6">
-          <h5 class="mb-4">Company</h5>
+          <h5 class="footer-heading">Company</h5>
           <ul class="list-unstyled">
             <li class="mb-2"><a href="#" onclick="showPage('about')">About Us</a></li>
             <li class="mb-2"><a href="#" onclick="showPage('contact')">Contact</a></li>
@@ -1586,7 +825,7 @@
           </ul>
         </div>
         <div class="col-lg-2 col-md-6">
-          <h5 class="mb-4">Support</h5>
+          <h5 class="footer-heading">Support</h5>
           <ul class="list-unstyled">
             <li class="mb-2"><a href="#">Help Center</a></li>
             <li class="mb-2"><a href="#">Documentation</a></li>
@@ -1598,10 +837,10 @@
       <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
       <div class="row align-items-center">
         <div class="col-md-6">
-          <p class="mb-0 text-muted">&copy; 2024 Bold Media Digital. All rights reserved.</p>
+          <p class="footer-copyright">&copy; 2024 Bold Media Digital. All rights reserved.</p>
         </div>
         <div class="col-md-6 text-md-end">
-          <p class="mb-0 text-muted">Established 2016 | Global Presence in 20+ Countries</p>
+          <p class="footer-tagline">Established 2016 | Global Presence in 20+ Countries</p>
         </div>
       </div>
     </div>
@@ -1609,209 +848,7 @@
 
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-  <script>
-    // Page Navigation
-    function showPage(pageId) {
-      const pages = document.querySelectorAll('.page-content');
-      pages.forEach(page => {
-        page.classList.remove('active', 'fade-in-up');
-      });
-
-      const targetPage = document.getElementById(pageId);
-      targetPage.classList.add('active');
-      setTimeout(() => {
-        targetPage.classList.add('fade-in-up');
-      }, 50);
-
-      const navLinks = document.querySelectorAll('.nav-link');
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-      });
-
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-
-      const navbarCollapse = document.querySelector('.navbar-collapse');
-      if (navbarCollapse && navbarCollapse.classList.contains('show')) {
-        const bsCollapse = new bootstrap.Collapse(navbarCollapse);
-        bsCollapse.hide();
-      }
-    }
-
-    // Contact Form Submission
-    document.getElementById('contactForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const message = document.getElementById('message').value;
-
-      if (!name || !email || !message) {
-        alert('Please fill in all required fields.');
-        return;
-      }
-
-      const submitBtn = document.querySelector('#contactForm button[type="submit"]');
-      const originalHTML = submitBtn.innerHTML;
-
-      submitBtn.innerHTML = '<div class="spinner me-2"></div>Sending...';
-      submitBtn.disabled = true;
-
-      setTimeout(() => {
-        alert('Thank you for your message! We will get back to you soon.');
-        document.getElementById('contactForm').reset();
-        submitBtn.innerHTML = originalHTML;
-        submitBtn.disabled = false;
-      }, 2000);
-    });
-
-    // Enhanced Navbar scroll effect
-    window.addEventListener('scroll', function () {
-      const navbar = document.querySelector('.navbar');
-      if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-        navbar.style.boxShadow = '0 8px 32px rgba(0,0,0,0.15)';
-      } else {
-        navbar.style.background = 'rgba(255, 255, 255, 0.85)';
-        navbar.style.boxShadow = '0 8px 32px rgba(0,0,0,0.1)';
-      }
-    });
-
-    // Counter animation for stats
-    function animateCounter(element, target) {
-      let current = 0;
-      const increment = target / 100;
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-          current = target;
-          clearInterval(timer);
-        }
-        element.textContent = Math.floor(current) + (element.dataset.suffix || '');
-      }, 20);
-    }
-
-    // Initialize counters when in view
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const counters = entry.target.querySelectorAll('.stat-number');
-          counters.forEach(counter => {
-            const target = parseInt(counter.textContent);
-            if (target > 0) {
-              animateCounter(counter, target);
-            }
-          });
-          observer.unobserve(entry.target);
-        }
-      });
-    });
-
-    const statsSection = document.querySelector('.stats-section');
-    if (statsSection) {
-      observer.observe(statsSection);
-    }
-
-    // Create dynamic particles
-    function createParticle() {
-      const particle = document.createElement('div');
-      particle.className = 'particle';
-      particle.style.left = Math.random() * 100 + '%';
-      particle.style.animationDuration = (Math.random() * 3 + 5) + 's';
-      particle.style.opacity = Math.random() * 0.5 + 0.3;
-
-      const colors = ['var(--primary-color)', 'var(--accent-color)', 'var(--success-color)', 'var(--warning-color)'];
-      particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-
-      document.querySelector('.particles').appendChild(particle);
-
-      setTimeout(() => {
-        particle.remove();
-      }, 8000);
-    }
-
-    // DOM Content Loading
-    document.addEventListener('DOMContentLoaded', function () {
-      // Generate particles periodically
-      setInterval(createParticle, 1000);
-
-      // Enhanced hover effects for cards
-      const cards = document.querySelectorAll('.card-modern, .product-card, .service-card');
-      cards.forEach(card => {
-        card.addEventListener('mouseenter', function () {
-          this.style.transform = 'translateY(-8px) scale(1.02)';
-        });
-        card.addEventListener('mouseleave', function () {
-          this.style.transform = 'translateY(0) scale(1)';
-        });
-      });
-
-      // Enhanced scroll animations
-      const scrollObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('fade-in-up');
-          }
-        });
-      }, { threshold: 0.1 });
-
-      document.querySelectorAll('.card-modern, .service-card, .product-card, .feature-card, .industry-showcase').forEach(el => {
-        scrollObserver.observe(el);
-      });
-
-      // Enhanced client logo interactions
-      const clientCards = document.querySelectorAll('.client-logo-card');
-      clientCards.forEach(card => {
-        card.addEventListener('mouseenter', function () {
-          this.style.background = 'rgba(255, 255, 255, 1)';
-          this.style.borderColor = 'rgba(99, 102, 241, 0.3)';
-        });
-        card.addEventListener('mouseleave', function () {
-          this.style.background = 'rgba(255, 255, 255, 0.9)';
-          this.style.borderColor = 'rgba(255, 255, 255, 0.3)';
-        });
-      });
-
-      // Enhanced button interactions
-      const buttons = document.querySelectorAll('.btn-primary-custom, .btn-outline-custom');
-      buttons.forEach(button => {
-        button.addEventListener('mouseenter', function () {
-          const icon = this.querySelector('i');
-          if (icon) {
-            icon.style.transform = 'translateX(5px)';
-            icon.style.transition = 'transform 0.3s ease';
-          }
-        });
-        button.addEventListener('mouseleave', function () {
-          const icon = this.querySelector('i');
-          if (icon) {
-            icon.style.transform = 'translateX(0)';
-          }
-        });
-      });
-
-      // Trigger initial animations
-      setTimeout(() => {
-        const heroElements = document.querySelectorAll('.hero-section .fade-in-up');
-        heroElements.forEach((element, index) => {
-          setTimeout(() => {
-            element.classList.add('fade-in-up');
-          }, index * 200);
-        });
-      }, 100);
-    });
-
-    // Handle image loading errors globally
-    document.addEventListener('error', function(e) {
-      if (e.target.tagName === 'IMG' && e.target.src.includes('images/')) {
-        e.target.style.display = 'none';
-        const placeholder = e.target.nextElementSibling;
-        if (placeholder && placeholder.classList.contains('logo-placeholder')) {
-          placeholder.style.display = 'flex';
-        }
-      }
-    }, true);
-  </script>
+  <script src="script.js"></script>
 </body>
 
 </html>
